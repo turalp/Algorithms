@@ -128,7 +128,23 @@ namespace Algorithms
                 throw new NullReferenceException("List has no elements.");
             }
 
-            throw new NotImplementedException();
+            if (_head.Data.Equals(value))
+            {
+                _head = _head.Next;
+            }
+
+            Node current = _head;
+
+            while (current.Next != null)
+            {
+                if (current.Next.Data.Equals(value))
+                {
+                    current.Next = current.Next.Next;
+                    return;
+                }
+
+                current = current.Next;
+            }
         }
 
         /// <summary>
