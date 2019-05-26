@@ -152,21 +152,12 @@ namespace Algorithms
         /// </summary>
         private sealed class Node
         {
-            private T _data;
-
-            public T Data
-            {
-                get => _data;
-                set
-                {
-
-                }
-            }
+            public T Data { get; }
             public Node Next { get; set; }
 
             public Node(T data)
             {
-                _data = data;
+                Data = data;
             }
         }
 
