@@ -43,6 +43,11 @@ namespace Algorithms
             {
                 throw new IndexOutOfRangeException("Index of array cannot be negative value.");
             }
+            if (index > Length)
+            {
+                throw new IndexOutOfRangeException("Index is out of specified length.");
+            }
+
             return _data[index];
         }
 

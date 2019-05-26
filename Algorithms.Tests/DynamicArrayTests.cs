@@ -37,7 +37,18 @@ namespace Algorithms.Tests
             
             Assert.That(() => _data[-1], Throws.TypeOf<IndexOutOfRangeException>());
         }
-        
+
+        [Test]
+        public void GetValue_WhenIndexIsGreaterThanLength_ShouldThrowException()
+        {
+            _data.Add(1);
+            _data.Add(2);
+            _data.Add(3);
+
+
+            Assert.That(() => _data[4], Throws.TypeOf<IndexOutOfRangeException>());
+        }
+
         [Test]
         public void SetValue()
         {
