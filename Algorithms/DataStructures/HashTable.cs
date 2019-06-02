@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Algorithms
+namespace Algorithms.DataStructures
 {
     /// <summary>
     /// Data structure with Key -> Value pair.

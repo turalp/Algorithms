@@ -1,7 +1,8 @@
 ﻿using System;
+using Algorithms.DataStructures;
 using NUnit.Framework;
 
-namespace Algorithms.Tests
+namespace Algorithms.Tests.DataStructuresTests
 {
     [TestFixture]
     public class DynamicArrayTests

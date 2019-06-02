@@ -1,43 +1,60 @@
 ﻿using System;
 
-namespace Algorithms
+namespace Algorithms.DataStructures
 {
     /// <summary>
-    /// A data structure that works in a way of LIFO.
+    /// A data structure that works in a way of FIFO.
     /// </summary>
     /// <typeparam name="T">Any type.</typeparam>
-    public class Stack<T>
+    public class Queue<T>
     {
         private Node _head;
+        private Node _tail;
 
         /// <summary>
-        /// Adds value to the stack.
+        /// Adds element to the queue.
         /// </summary>
-        /// <param name="value">Value of element.</param>
-        public void Push(T value)
+        /// <param name="value">Value of new element.</param>
+        public void Add(T value)
         {
-            var newNode = new Node(value) {Next = _head};
+            var newNode = new Node(value);
 
-            _head = newNode;
+            if (_tail == null)
+            {
+                _tail = newNode;
+            }
+
+            _tail.Next = newNode;
+            _tail = newNode;
+
+            if (_head == null)
+            {
+                _head = _tail;
+            }
         }
 
         /// <summary>
-        /// Pops first element from stack.
+        /// Removes element from the queue.
         /// </summary>
-        /// <returns>Value of element.</returns>
-        public T Pop()
+        /// <returns>Removed value.</returns>
+        public T Remove()
         {
             if (_head == null)
             {
-                throw new NullReferenceException("Stack has no elements.");
+                throw new NullReferenceException("Queue has no elements.");
             }
 
             T data = _head.Data;
             _head = _head.Next;
 
+            if (_head == null)
+            {
+                _tail = null;
+            }
+
             return data;
         }
-        
+
         /// <summary>
         /// Gets a value for first element in the stack.
         /// </summary>
@@ -57,7 +74,7 @@ namespace Algorithms
         }
 
         /// <summary>
-        /// Node of stack, considered as an element.
+        /// Node of queue, represents an element.
         /// </summary>
         private class Node
         {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Algorithms
+namespace Algorithms.DataStructures
 {
     /// <summary>
     /// Data structure that can find max/min by O(logN).

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Algorithms
+namespace Algorithms.DataStructures
 {
     /// <summary>
     /// Data structure, where all elements are linked to next element in the row.

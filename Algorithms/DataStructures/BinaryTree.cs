@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Algorithms
+namespace Algorithms.DataStructures
 {
     /// <summary>
     /// Data structure that called binary search tree.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Algorithms
+namespace Algorithms.DataStructures
 {
     /// <summary>
     /// Represents array with dynamic capacity.
