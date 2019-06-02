@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Algorithms.Algorithms
+﻿namespace Algorithms.Algorithms
 {
     /// <summary>
     /// Two realizations of fibonacci series: with and without memoization.
