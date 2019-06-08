@@ -8,7 +8,7 @@
         /// <summary>
         /// Array for caching results of fib values.
         /// </summary>
-        private static readonly int[] _memo = new int[int.MaxValue];
+        private static readonly int[] _memo = new int[1001];
 
         /// <summary>
         /// Naive implementation of fibonacci series value calculation.
