@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Algorithms.Algorithms
 {
@@ -61,6 +62,31 @@ namespace Algorithms.Algorithms
                     {
                         visited[n] = true;
                         queue.Enqueue(n);
+                    }
+                }
+            }
+        }
+
+        public void Dfs(int s)
+        {
+            bool[] visited = new bool[_v];
+
+            Stack<int> stack = new Stack<int>();
+
+            visited[s] = true;
+            stack.Push(s);
+
+            while (stack.Count != 0)
+            {
+                s = stack.Pop();
+                IEnumerator<int> ie = _adjL[s].GetEnumerator();
+                while (ie.MoveNext())
+                {
+                    int n = ie.Current;
+                    if (!visited[n])
+                    {
+                        visited[n] = true;
+                        stack.Push(n);
                     }
                 }
             }
