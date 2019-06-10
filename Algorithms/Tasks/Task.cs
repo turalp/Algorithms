@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Algorithms.Tasks
 {
@@ -122,6 +123,103 @@ namespace Algorithms.Tasks
             }
 
             return new string(result);
+        }
+
+        /// <summary>
+        /// Checks if there is one or zero edition/insertion in string.
+        /// </summary>
+        /// <param name="fStr">First string.</param>
+        /// <param name="sStr">Second string.</param>
+        /// <returns>If more than two differences, it will return false.</returns>
+        public static bool OneAway(string fStr, string sStr)
+        {
+            if (Math.Abs(fStr.Length - sStr.Length) > 1)
+            {
+                return false;
+            }
+
+            if (fStr.Length == sStr.Length)
+            {
+                return IsOneEdit(fStr, sStr);
+            }
+
+            if (fStr.Length + 1 == sStr.Length)
+            {
+                return IsOneInsert(fStr, sStr);
+            }
+
+            return IsOneInsert(sStr, fStr);
+        }
+
+        private static bool IsOneEdit(string fStr, string sStr)
+        {
+            bool diff = false;
+            for (int i = 0; i < fStr.Length; i++)
+            {
+                if (fStr[i] != sStr[i])
+                {
+                    if (diff)
+                    {
+                        return false;
+                    }
+
+                    diff = true;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool IsOneInsert(string fStr, string sStr)
+        {
+            int index1 = 0;
+            int index2 = 0;
+            while (index1 < fStr.Length && index2 < sStr.Length)
+            {
+                if (fStr[index1] != sStr[index2])
+                {
+                    if (index1 != index2)
+                    {
+                        return false;
+                    }
+
+                    index2++;
+                }
+                else
+                {
+                    index1++;
+                    index2++;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Compress string (for instance, aabbcc -> a2b2c2)
+        /// </summary>
+        /// <param name="str">Given string.</param>
+        /// <returns>Compressed string.</returns>
+        public static string Compress(string str)
+        {
+            StringBuilder compressed = new StringBuilder();
+
+            int count = 1;
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (i + 1 >= str.Length || str[i] != str[i + 1])
+                {
+                    compressed.Append(str[i]);
+                    compressed.Append(count);
+                    count = 0;
+                }
+                
+                count++;
+            }
+
+            return str.Length > compressed.Length 
+                ? compressed.ToString() 
+                : str;
         }
     }
 }

@@ -26,5 +26,23 @@ namespace Algorithms.Tests.Tasks
         {
             Assert.That(Task.URLify("My Home Page       ", 16), Is.EqualTo("My%20Home%20Page"));
         }
+
+        [Test]
+        public void OneAway()
+        {
+            Assert.That(Task.OneAway("pale", "ple"), Is.True);
+            Assert.That(Task.OneAway("pale", "bale"), Is.True);
+            Assert.That(Task.OneAway("pale", "pales"), Is.True);
+            Assert.That(Task.OneAway("pale", "bla"), Is.False);
+        }
+
+        [Test]
+        public void Compress()
+        {
+            Assert.That(Task.Compress("aabbcc"), Is.EqualTo("aabbcc"));
+            Assert.That(Task.Compress("aabbbbcc"), Is.EqualTo("a2b4c2"));
+            Assert.That(Task.Compress("aaabbbccc"), Is.EqualTo("a3b3c3"));
+            Assert.That(Task.Compress("abc"), Is.EqualTo("abc"));
+        }
     }
 }
