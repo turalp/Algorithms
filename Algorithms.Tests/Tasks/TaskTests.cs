@@ -1,4 +1,5 @@
-﻿using Algorithms.Tasks;
+﻿using Algorithms.DataStructures;
+using Algorithms.Tasks;
 using NUnit.Framework;
 
 namespace Algorithms.Tests.Tasks
@@ -43,6 +44,28 @@ namespace Algorithms.Tests.Tasks
             Assert.That(Task.Compress("aabbbbcc"), Is.EqualTo("a2b4c2"));
             Assert.That(Task.Compress("aaabbbccc"), Is.EqualTo("a3b3c3"));
             Assert.That(Task.Compress("abc"), Is.EqualTo("abc"));
+        }
+
+        [Test]
+        public void IsSubtree()
+        {
+            BinaryTree<int, int> tree = new BinaryTree<int, int>();
+
+            tree.Insert(5, 0);
+            tree.Insert(3, 1);
+            tree.Insert(2, 2);
+            tree.Insert(4, 3);
+            tree.Insert(7, 4);
+            tree.Insert(6, 5);
+            tree.Insert(8, 6);
+
+            BinaryTree<int, int> subTree = new BinaryTree<int, int>();
+
+            subTree.Insert(7, 0);
+            subTree.Insert(6, 1);
+            subTree.Insert(8, 2);
+
+            Assert.That(tree.ToString(), Is.EqualTo("5324768"));
         }
     }
 }

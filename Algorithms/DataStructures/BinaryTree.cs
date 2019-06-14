@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Algorithms.DataStructures
 {
@@ -152,6 +153,27 @@ namespace Algorithms.DataStructures
             }
 
             return node;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            Traversal(_root, sb);
+
+            return sb.ToString();
+        }
+
+        private void Traversal(Node root, StringBuilder sb)
+        {
+            if (root != null && sb != null)
+            {
+                sb.Append(root.Key);
+                sb.Append(root.Left.Key);
+                sb.Append(root.Right.Key);
+
+                Traversal(root.Left, sb);
+                Traversal(root.Right, sb);
+            }
         }
 
         /// <summary>

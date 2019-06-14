@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using Algorithms.DataStructures;
 
 namespace Algorithms.Tasks
 {
@@ -221,5 +223,58 @@ namespace Algorithms.Tasks
                 ? compressed.ToString() 
                 : str;
         }
+
+        public static bool LoopDetection(System.Collections.Generic.LinkedList<int> list)
+        {
+            //if (list.Count <= 1)
+            //{
+            //    return false;
+            //}
+
+            //Stack<int> temp = new Stack<int>();
+
+            //LinkedListNode<int> current = list.First;
+
+            //while (current.Next != null)
+            //{
+            //    temp.Push(current.Value);
+            //    if (temp.Contains(current.Value))
+            //    {
+            //        return true;
+            //    }
+
+            //    current = current.Next;
+            //}
+
+            //return false;
+
+            // Floyd's cycle-finding algorithm
+
+            LinkedListNode<int> slow = list.First;
+            LinkedListNode<int> fast = list.First;
+
+            while (fast != null && fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next.Next;
+
+                if (slow == fast)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool IsSubtree(BinaryTree<int, int> tree, BinaryTree<int, int> subtree)
+        {
+            string fullTree = tree.ToString();
+            string sub = subtree.ToString();
+
+            return fullTree.Contains(sub);
+        }
+
+
     }
 }
