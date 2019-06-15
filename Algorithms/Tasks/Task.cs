@@ -224,6 +224,11 @@ namespace Algorithms.Tasks
                 : str;
         }
 
+        /// <summary>
+        /// Checks whether linked list has a loop.
+        /// </summary>
+        /// <param name="list">Given linked list.</param>
+        /// <returns></returns>
         public static bool LoopDetection(System.Collections.Generic.LinkedList<int> list)
         {
             //if (list.Count <= 1)
@@ -267,6 +272,12 @@ namespace Algorithms.Tasks
             return false;
         }
 
+        /// <summary>
+        /// Checks, is one binary tree is a subtree of another.
+        /// </summary>
+        /// <param name="tree">Tree.</param>
+        /// <param name="subtree">Tree that needs to be checked for subtree.</param>
+        /// <returns></returns>
         public static bool IsSubtree(BinaryTree<int, int> tree, BinaryTree<int, int> subtree)
         {
             string fullTree = tree.ToString();
@@ -275,6 +286,192 @@ namespace Algorithms.Tasks
             return fullTree.Contains(sub);
         }
 
+        /// <summary>
+        /// Provide checking strings to being palindrome.
+        /// </summary>
+        /// <param name="word">Given string.</param>
+        /// <returns></returns>
+        public static bool IsPalindrome(string word)
+        {
+            if (!string.IsNullOrEmpty(word))
+            {
+                return false;
+            }
 
+            for (int i = 0; i < word?.Length / 2; i++)
+            {
+                if (word[i] != word[word.Length - i - 1])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Writes to console numbers from 1 to 100.
+        /// </summary>
+        public static void FizzBuzz()
+        {
+            for (int i = 1; i < 101; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    Console.WriteLine("FizzBuzz");
+                }
+                else if (i % 5 == 0)
+                {
+                    Console.WriteLine("Buzz");
+                }
+                else if (i % 3 == 0)
+                {
+                    Console.WriteLine("Fizz");
+                }
+                else
+                {
+                    Console.WriteLine(i);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks, is it possible to write note with given letters.
+        /// </summary>
+        /// <param name="note">Given note.</param>
+        /// <param name="letters">Given letters.</param>
+        /// <returns></returns>
+        public static bool CanWriteNote(string note, string letters)
+        {
+            note = note.Replace(" ", "");
+
+            if (note.Length > letters.Length)
+            {
+                return false;
+            }
+
+            var noteDict = new Dictionary<char, int>();
+            var lettersDict = new Dictionary<char, int>();
+
+            for (int i = 0; i < note.Length; i++)
+            {
+                noteDict[note[i]]++;
+            }
+
+            for (int i = 0; i < letters.Length; i++)
+            {
+                lettersDict[letters[i]]++;
+            }
+
+            foreach (var dict in noteDict)
+            {
+                if (!lettersDict.ContainsKey(dict.Key))
+                {
+                    return false;
+                }
+
+                if (lettersDict[dict.Key] != dict.Value)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Provides realization of Sieve of Eratosthenes.
+        /// </summary>
+        /// <param name="upperbound">Until which element primes have to be returned.</param>
+        /// <returns></returns>
+        public static ICollection<int> FindPrimes(int upperbound)
+        {
+            ICollection<int> primes = new List<int>();
+            bool[] isComposite = new bool[upperbound];
+            int sqrt = (int)Math.Sqrt(upperbound);
+
+            for (int i = 2; i < sqrt; i++)
+            {
+                if (!isComposite[i])
+                {
+                    primes.Add(i);
+
+                    for (int j = i * i; j <= upperbound; j += i)
+                    {
+                        isComposite[j] = true;
+                    }
+                }
+            }
+
+            for (int i = sqrt; i < upperbound; i++)
+            {
+                if (!isComposite[i])
+                {
+                    primes.Add(i);
+                }
+            }
+
+            return primes;
+        }
+
+        /// <summary>
+        /// Reversing a text.
+        /// </summary>
+        /// <param name="text">Given string.</param>
+        /// <returns></returns>
+        public static string Reverse(string text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+
+            StringBuilder reversed = new StringBuilder();
+
+            for (int i = text.Length - 1; i > 0; i++)
+            {
+                reversed.Append(text[i]);
+            }
+
+            return reversed.ToString();
+
+            // Second way
+
+            //char[] chars = text.ToCharArray();
+
+            //for (int left = 0, right = text.Length - 1; left < text.Length - 1 && right > 0; left++, right--)
+            //{
+            //    char temp = chars[left];
+            //    chars[left] = chars[right];
+            //    chars[right] = temp;
+            //}
+
+            //return new string(chars);
+        }
+
+        /// <summary>
+        /// Reversing a number.
+        /// </summary>
+        /// <param name="number">Given number.</param>
+        /// <returns></returns>
+        public static int Reverse(int number)
+        {
+            if (number < 0)
+            {
+                number *= -1;
+            }
+
+            int reverse = 0;
+            int lastDigit = 0;
+
+            while (number >= 1)
+            {
+                lastDigit = number % 10;
+                reverse = reverse * 10 + lastDigit;
+                number /= 10;
+            }
+
+            return number < 0 ? number * -1 : number;
+        }
     }
 }
